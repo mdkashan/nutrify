@@ -21,7 +21,9 @@ mongoose.connect("mongodb://localhost:27017/nutrify")
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.get("/"), (req, res)=>{
+    res.send("HOME PAGE")
+}
 // endpoint for registering user 
 app.post("/register", (req,res)=>{
     

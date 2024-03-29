@@ -7,6 +7,7 @@ import userModel from './models/userModel.js'
 import foodModel from './models/foodModel.js'
 import trackingModel from './models/trackingModel.js'
 import verifyToken from './verifyToken.js'
+import path from 'path'
 
 // database connection 
 mongoose.connect("mongodb://localhost:27017/nutrify")
@@ -20,6 +21,12 @@ mongoose.connect("mongodb://localhost:27017/nutrify")
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// static files
+app.use(express.static(path.join(__dirname, './nutrifyBend/nutrifyFend/dist')))
+app.get('*', function(req, res){
+    res.sendFile(path.join(__dirname, './nutrifyBend/nutrifyFend/dist/index.html'))
+})
 
 // endpoint for registering user 
 app.post("/register", (req,res)=>{

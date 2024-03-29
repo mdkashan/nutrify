@@ -22,12 +22,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// static files
-app.use(express.static(path.join(__dirname, './nutrifyBend/nutrifyFend/dist')))
-app.get('*', function(req, res){
-    res.sendFile(path.join(__dirname, './nutrifyBend/nutrifyFend/dist/index.html'))
-})
-
 // endpoint for registering user 
 app.post("/register", (req,res)=>{
     

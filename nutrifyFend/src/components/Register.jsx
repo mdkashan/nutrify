@@ -26,7 +26,7 @@ export default function Register()
             event.preventDefault();
             // console.log(userDetails);
 
-            fetch("http://localhost:8000",{
+            fetch(`http://localhost:8000`,{
                 method:"POST",
                 body:JSON.stringify(userDetails),
                 headers:{

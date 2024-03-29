@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "build": "vite build",
-    "dev":"npm start"
+    "build": "npm i",
+    "dev":"npm statrt"
   },
   "author": "mdkashan",
   "license": "ISC",

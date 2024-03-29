@@ -8,7 +8,7 @@ export default function Diet()
 
     let loggedData = useContext(UserContext)
     const [items,setItems] = useState([]);
-    console.log(loggedData);
+    // console.log(loggedData);
     const [date,setDate] = useState(new Date())
 
     let [total,setTotal] = useState({
@@ -20,7 +20,7 @@ export default function Diet()
     })
 
     useEffect(()=>{
-        console.log(loggedData.loggedUser.userid);
+        // console.log(loggedData.loggedUser.userid);
         fetch(`http://localhost:8000/track/${loggedData.loggedUser.userid}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`,{
             method:"GET",
             headers:{
@@ -30,9 +30,9 @@ export default function Diet()
         .then((response)=>response.json())
 
         .then((data)=>{
-            console.log(data);
+            // console.log(data);
             setItems(data);
-            console.log(items);
+            // console.log(items);
         })
         .catch((err)=>{
             console.log(err);

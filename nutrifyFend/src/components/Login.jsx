@@ -25,7 +25,7 @@ export default function Login()
     function handleSubmit(event)
     {   
         event.preventDefault();
-        console.log(userCreds);
+        // console.log(userCreds);
 
         fetch(`http://localhost:8000/login`,{
             method:"POST",

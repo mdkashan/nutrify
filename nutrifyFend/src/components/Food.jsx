@@ -15,7 +15,7 @@ export default function Food(props)
        setFood(props.food);
        setFoodInital(props.food);
 
-       console.log(loggedData);
+      //  console.log(loggedData);
        
     },[props.food])
 
@@ -52,7 +52,7 @@ export default function Food(props)
             quantity:eatenQuantity
         }
 
-        console.log(trackedItem);
+        // console.log(trackedItem);
 
         fetch(`http://localhost:8000/track`,{
             method:"POST",
@@ -64,7 +64,7 @@ export default function Food(props)
         })
         .then((response)=>response.json())
         .then((data)=>{
-            console.log(data);
+            // console.log(data);
             if(data) toast.success("Food item added sucessgully",{
               style:{
                 backgroundColor:'black',

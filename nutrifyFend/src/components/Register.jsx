@@ -24,9 +24,9 @@ export default function Register()
         function handleSubmit(event)
         {
             event.preventDefault();
-            // console.log(userDetails);
+            console.log(userDetails);
 
-            fetch(`http://localhost:8000`,{
+            fetch(`http://localhost:8000/register`,{
                 method:"POST",
                 body:JSON.stringify(userDetails),
                 headers:{

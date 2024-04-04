@@ -7,23 +7,22 @@ import userModel from './models/userModel.js'
 import foodModel from './models/foodModel.js'
 import trackingModel from './models/trackingModel.js'
 import verifyToken from './verifyToken.js'
-import path from 'path'
+import dotenv from 'dotenv'
 
-// database connection 
-mongoose.connect("mongodb://localhost:27017/nutrify")
-.then(()=>{
-    console.log("Database connection successfull")
-})
-.catch((err)=>{
-    console.log(err);
-})
+dotenv.config()
+mongoose.connect(process.env.DB_URL)
+.then(()=> console.log("DB connection sucssfull"))
+.catch((err)=> console.log(err))
+// mongoose.connect("mongodb://localhost:27017/nutrify").then(()=>{
+//     console.log("DB connection sucessfull");
+// }).catch((err)=>{
+//     console.log(err);
+// })
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.get("/"), (req, res)=>{
-    res.send("HOME PAGE")
-}
+
 // endpoint for registering user 
 app.post("/register", (req,res)=>{
     
@@ -61,7 +60,7 @@ app.post("/login",async (req,res)=>{
             bcrypt.compare(userCred.password,user.password,(err,success)=>{
                 if(success==true)
                 {
-                    jwt.sign({email:userCred.email},"nutrifyapp",(err,token)=>{
+                    jwt.sign({email:userCred.email}, process.env.SECRET_KEY, (err,token)=>{
                         if(!err)
                         {
                             res.send({message:"Login Success",token:token,userid:user._id,name:user.name});
@@ -78,17 +77,12 @@ app.post("/login",async (req,res)=>{
         {
             res.status(404).send({message:"User not found"})
         }
-
-
     }
     catch(err)
     {
         console.log(err);
         res.status(500).send({message:"Some Problem"})
     }
-
-
-
 })
 
 // endpoint to fetch all foods 
@@ -130,17 +124,13 @@ app.get("/foods/:name",verifyToken,async (req,res)=>{
         console.log(err);
         res.status(500).send({message:"Some Problem in getting the food"})
     }
-    
-
 })
-
 
 // endpoint to track a food 
 
 app.post("/track",verifyToken,async (req,res)=>{
     
-    let trackData = req.body;
-   
+    let trackData = req.body; 
     try 
     {
         let data = await trackingModel.create(trackData);
@@ -152,9 +142,6 @@ app.post("/track",verifyToken,async (req,res)=>{
         console.log(err);
         res.status(500).send({message:"Some Problem in adding the food"})
     }
-    
-
-
 })
 
 
@@ -165,25 +152,20 @@ app.get("/track/:userid/:date",async (req,res)=>{
     let userid = req.params.userid;
     let date = new Date(req.params.date);
     let strDate = (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
-
     try
     {
-
         let foods = await trackingModel.find({userId:userid,eatenDate:strDate}).populate('userId').populate('foodId')
         res.send(foods);
-
     }
     catch(err)
     {
         console.log(err);
         res.status(500).send({message:"Some Problem in getting the food"})
     }
-
-
 })
 
 
-const port = 8000;
+const port = process.env.PORT;
 app.listen(port,()=>{
     console.log(`Server is up and running on port  ${port}`);
 })

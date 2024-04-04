@@ -10,14 +10,11 @@ import verifyToken from './verifyToken.js'
 import dotenv from 'dotenv'
 
 dotenv.config()
+
 mongoose.connect(process.env.DB_URL)
 .then(()=> console.log("DB connection sucssfull"))
 .catch((err)=> console.log(err))
-// mongoose.connect("mongodb://localhost:27017/nutrify").then(()=>{
-//     console.log("DB connection sucessfull");
-// }).catch((err)=>{
-//     console.log(err);
-// })
+
 
 const app = express();
 app.use(express.json());

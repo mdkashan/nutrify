@@ -27,7 +27,7 @@ export default function Login()
         event.preventDefault();
         // console.log(userCreds);
 
-        fetch(`http://localhost:8000/login`,{
+        fetch(`https://nutrify.onrender.com/login`,{
             method:"POST",
             body:JSON.stringify(userCreds),
             headers:{

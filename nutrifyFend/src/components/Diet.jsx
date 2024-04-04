@@ -21,7 +21,7 @@ export default function Diet()
 
     useEffect(()=>{
         // console.log(loggedData.loggedUser.userid);
-        fetch(`http://localhost:8000/track/${loggedData.loggedUser.userid}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`,{
+        fetch(`https://nutrify.onrender.com/track/${loggedData.loggedUser.userid}/${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`,{
             method:"GET",
             headers:{
                 "Authorization":`Bearer ${loggedData.loggedUser.token}`

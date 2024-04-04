@@ -19,7 +19,9 @@ mongoose.connect(process.env.DB_URL)
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.get("/", (req, res)=>{
+    res.send("HOME PAGE")
+})
 // endpoint for registering user 
 app.post("/register", (req,res)=>{
     

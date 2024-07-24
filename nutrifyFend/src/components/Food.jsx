@@ -28,7 +28,7 @@ export default function Food(props)
                 setEatenQuantity(quantity);
 
                 let copyFood = {...food};
-                copyFood.protien = (foodInitial.protien*quantity)/100;
+                copyFood.protein = (foodInitial.protein*quantity)/100;
                 copyFood.carbohydrates = (foodInitial.carbohydrates*quantity)/100;
                 copyFood.fat = (foodInitial.fat*quantity)/100;
                 copyFood.fiber = (foodInitial.fiber*quantity)/100;
@@ -43,7 +43,7 @@ export default function Food(props)
             userId:loggedData.loggedUser.userid,
             foodId:food._id,
             details:{
-                protien:food.protien,
+                protein:food.protein,
                 carbohydrates:food.carbohydrates,
                 fat:food.fat,
                 fiber:food.fiber,
@@ -65,7 +65,7 @@ export default function Food(props)
         .then((response)=>response.json())
         .then((data)=>{
             // console.log(data);
-            if(data) toast.success("Food item added sucessgully",{
+            if(data) toast.success("Food item added sucessfully",{
               style:{
                 backgroundColor:'black',
                 color:'white'
@@ -85,7 +85,7 @@ export default function Food(props)
             </div>
             <h3 className="food-name">{food.name} {food.calories} (Kcal) for {eatenQuantity}G</h3>
             <div className="nutrient">
-              <p className="n-title">Protien</p>
+              <p className="n-title">protein</p>
               <p className="n-value">{food.protien}g</p>
             </div>
             <div className="nutrient">

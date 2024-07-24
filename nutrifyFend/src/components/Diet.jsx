@@ -13,7 +13,7 @@ export default function Diet()
 
     let [total,setTotal] = useState({
         totalCaloreis:0,
-        totalprotien:0,
+        totalprotein:0,
         totalCarbs:0,
         totalFats:0,
         totalFiber:0
@@ -49,7 +49,7 @@ export default function Diet()
 
         let totalCopy = {
             totalCaloreis:0,
-            totalprotien:0,
+            totalprotein:0,
             totalCarbs:0,
             totalFats:0,
             totalFiber:0
@@ -57,7 +57,7 @@ export default function Diet()
 
         items.forEach((item)=>{
             totalCopy.totalCaloreis += item.details.calories;
-            totalCopy.totalprotien += item.details.protien;
+            totalCopy.totalprotein += item.details.protein;
             totalCopy.totalCarbs += item.details.carbohydrates;
             totalCopy.totalFats += item.details.fat;
             totalCopy.totalFiber += item.details.fiber;
@@ -79,14 +79,14 @@ export default function Diet()
                         return (
                             <div className="item" key={item._id}>
                                 <h3>{item.foodId.name} ( {item.details.calories} Kcal for {item.quantity}g )</h3>
-                                <p>protien {item.details.protien}g, Carbs {item.details.carbohydrates}g, Fats {item.details.fat}g, Fiber {item.details.fiber}g</p>
+                                <p>protein {item.details.protein}g, Carbs {item.details.carbohydrates}g, Fats {item.details.fat}g, Fiber {item.details.fiber}g</p>
                             </div>
                         )
                     })
                 }
         <div className="item">
             <h3>  {total.totalCaloreis} Kcal </h3>
-            <p>protien {total.totalprotien}g, Carbs {total.totalCarbs}g, Fats {total.totalFats}g, Fiber {total.totalFiber}g</p>
+            <p>protein {total.totalprotein}g, Carbs {total.totalCarbs}g, Fats {total.totalFats}g, Fiber {total.totalFiber}g</p>
         </div>
         </section>
     )
